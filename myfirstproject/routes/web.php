@@ -47,9 +47,9 @@ use Illuminate\Support\Facades\Route;
 // })->where('id', '[0-9]{2,3}');
 
 // // Fallback Routing
-Route::fallback(function () {
-    return view('error');
-});
+// Route::fallback(function () {
+//     return view('error');
+// });
 
 // //Named Routing
 // Route::get('/user/profile', function () {
@@ -145,8 +145,51 @@ Route::get('/student/details/{y}', function ($y) {
     }
 });
 
-Route::get('/' , function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/hello/btech/cse', 'data') -> name('data');
+Route::view('/hello/btech/cse', 'data')->name('data');
+
+
+// Task 3
+// Portal Routing
+Route::get('/developer/profile/{name}', function ($name) {
+    return "Developer Profile: $name";
+});
+
+Route::get('/developer/{name}/project/{project}', function ($name, $project) {
+    return "Developer: $name, Project: $project";
+});
+
+Route::get('/developer/profile/{name}/{experience?}', function ($name, $experience = null) {
+    if ($experience) {
+        return "Developer: $name, Experience: $experience years";
+    } else {
+        return "Developer: $name, Experience: Not provided";
+    }
+});
+
+Route::get('/employee/details/{id}', function ($id) {
+    return "Employee Details for ID: $id";
+})->where('id', '[0-9]+');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
+        return "Admin Dashboard";
+    });
+    Route::get('/manage-developers', function () {
+        return "Manage Developers";
+    });
+    Route::get('/project-report', function () {
+        return "Project Report";
+    });
+    Route::fallback(function () {
+        return view('googleError');
+    });
+});
+
+
+// // Ways to pass data to view -> Array Method -> Associative Array, Compact Array, With Array 
+// // 1st Associative Array
+// Route::view('');
