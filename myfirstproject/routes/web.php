@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 Route::get('/', function () {
     return "hello duniya kaise ho";
@@ -274,4 +275,30 @@ Route::get('/json-responses', function () {
             'role' => 'developer'
         ],
     );
+});
+
+// cookies in laravel
+
+Route::get('/set-cookie', function () {
+    return response("Cookie is set")
+        ->cookie('user', 'Arnav', 60);
+});
+
+// get cookie value in laravel
+
+Route::get('/get-cookie', function () {
+    $value = request()->cookie('user');
+    return "The value of the cookie is: " . $value;
+});
+
+// delete cookie in laravel
+Route::get('/delete-cookie', function () {
+    return response("Cookie is deleted")
+        ->cookie('user', '', -1);
+});
+
+// verify cookie deletion in laravel
+Route::get('/get-cookie', function () {
+    $value = request()->cookie('user');
+    return "The value of the cookie is: " . $value;
 });
