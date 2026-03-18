@@ -237,3 +237,11 @@ Route::fallback(function () {
 
 Route::view('/home', 'home');
 Route::view('/about', 'about');
+
+// till now we sharing static data globally with all views but if we want to share dynamic data globally with all views then we can use view composer for that
+// step-1 making two new views contact and services via artisan command -> php artisan make:view contact and php artisan make:view services
+// step-2 go in app folder then providers folder then open AppServiceProvider.php file and import the view facade (use Illuminate\Support\Facades\View;) and then write the code for sharing dynamic data globally with all views in boot method
+// step-3 import views in AppServiceProvider.php file
+
+Route::view('/contact', 'contact');
+Route::view('/services', 'services');
