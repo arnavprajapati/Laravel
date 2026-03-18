@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return "hello duniya kaise ho";
-// });
+Route::get('/', function () {
+    return "hello duniya kaise ho";
+});
 
 // // Basic Routing
 // Route::get('/display', function () {
@@ -47,9 +47,9 @@ use Illuminate\Support\Facades\Route;
 // })->where('id', '[0-9]{2,3}');
 
 // // Fallback Routing
-// Route::fallback(function () {
-//     return view('error');
-// });
+Route::fallback(function () {
+    return view('error');
+});
 
 // //Named Routing
 // Route::get('/user/profile', function () {
@@ -137,13 +137,13 @@ use Illuminate\Support\Facades\Route;
 
 // Task 2 -> create a contraint routing i which the url  would be student/details/{y} here y is constraint when u write any thing except y it will generate customized message u made a wrong entry 
 
-Route::get('/student/details/{y}', function ($y) {
-    if ($y === 'y') {
-        return "you entered the correct value -> y";
-    } else {
-        return "wrong entry";
-    }
-});
+// Route::get('/student/details/{y}', function ($y) {
+//     if ($y === 'y') {
+//         return "you entered the correct value -> y";
+//     } else {
+//         return "wrong entry";
+//     }
+// });
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -193,34 +193,47 @@ Route::get('/student/details/{y}', function ($y) {
 // // Ways to pass data to view -> Array Method -> Associative Array, Compact Array, With Array 
 // // 1st Associative Array used for passing values in view
 
-Route::get('/', function () {
-    $courses = ['js', 'php', 'c++'];
-    return view('student', ['courses' => $courses]);
-});
+// Route::get('/', function () {
+//     $courses = ['js', 'php', 'c++'];
+//     return view('student', ['courses' => $courses]);
+// });
 
-// // 2nd CompactArray used for passing values in view
+// // // 2nd CompactArray used for passing values in view
 
-Route::get('/', function () {
-    $courses = ['js', 'php', 'c++'];
-    return view('student', compact('courses'));
-});
+// Route::get('/', function () {
+//     $courses = ['js', 'php', 'c++'];
+//     return view('student', compact('courses'));
+// });
 
 
-Route::get('/compact', function () {
-    $name = 'John';
-    $age = 25;
-    return view('data', compact('name', 'age'));
-});
+// Route::get('/compact', function () {
+//     $name = 'John';
+//     $age = 25;
+//     return view('data', compact('name', 'age'));
+// });
 
-// // 3rd With Array used for passing values in view
+// // // 3rd With Array used for passing values in view
 
-Route::get('/', function () {
-    $courses = ['js', 'php', 'c++'];
-    return view('student')->with('courses', $courses);
-});
+// Route::get('/', function () {
+//     $courses = ['js', 'php', 'c++'];
+//     return view('student')->with('courses', $courses);
+// });
 
-Route::get('/with-example', function () {
-    $name = 'Jane';
-    $age = 30;
-    return view('data')->with('name', $name)->with('age', $age);
-});
+// Route::get('/with-example', function () {
+//     $name = 'Jane';
+//     $age = 30;
+//     return view('data')->with('name', $name)->with('age', $age);
+// });
+
+
+// sharing data globally with all views
+// step-1 creation of view named home via artisan command -> php artisan make:view home
+// step-2 create a corresponding route for that view
+// step-3 go in app folder then providers folder then open AppServiceProvider.php file and import the view facade (use Illuminate\Support\Facades\View;) and then write the code for sharing data globally with all views in boot method
+// step-4 import views in AppServiceProvider.php file and write the code for sharing data globally with all views in boot method
+// step-5 make use of view::share() method to share data globally with all views and pass the key and value in that method
+// step-6 use blade template syntax {{key}} to print the value of the key in the view file
+// step-7 run your code with url like http://localhost:8000/home and http://localhost:8000/about to see the output of the globally shared data in both views
+
+Route::view('/home', 'home');
+Route::view('/about', 'about');
