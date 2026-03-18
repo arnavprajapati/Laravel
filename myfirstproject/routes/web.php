@@ -302,3 +302,13 @@ Route::get('/get-cookie', function () {
     $value = request()->cookie('user');
     return "The value of the cookie is: " . $value;
 });
+
+// laravel redirection 
+
+Route::get('/old-url', function () {
+    return redirect('/new-url');
+});
+
+Route::get('/new-url', function () {
+    return "This is the new URL";
+});
