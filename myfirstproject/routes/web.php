@@ -245,3 +245,33 @@ Route::view('/about', 'about');
 
 Route::view('/contact', 'contact');
 Route::view('/services', 'services');
+
+// attaching headers like to identify broweser info (user-agent), get wuthentication info (authorization) and content type (content-type) in the response of the route and manage cookies and sessions in laravel
+
+Route::get('/adding-header', function () {
+    return response("Headers are attached")
+        ->header('app-name', 'basic/info')
+        ->header('Content-Type', 'text/plain')
+        ->header('File disposition', 'downloadable');
+});
+
+// json response in laravel
+
+Route::get('/json-response', function () {
+    $data = [
+        'name' => 'Arnav',
+        'age' => 20,
+        'role' => 'developer'
+    ];
+    return response()->json($data);
+});
+
+Route::get('/json-responses', function () {
+    return response()->json(
+        [
+            'name' => 'Arnav',
+            'age' => 20,
+            'role' => 'developer'
+        ],
+    );
+});
