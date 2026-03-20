@@ -21,6 +21,8 @@ Route::get('/first', [firstcontroller::class, 'show']);
 // using blade file instead of string
 Route::get('/firstblade', [firstcontroller::class, 'showblade']);
 
+Route::get('/second/{string}', [firstcontroller::class, 'passshowblade']);
+
 // calculator using controller
 Route::get('/calculator/{num1}/{comm}/{num2}', [firstcontroller::class, 'calculator']);
 
