@@ -303,7 +303,7 @@ Route::get('/get-cookie', function () {
     return "The value of the cookie is: " . $value;
 });
 
-// laravel redirection 
+// laravel redirection to redirect from one url to another url
 
 Route::get('/old-url', function () {
     return redirect('/new-url');
@@ -311,4 +311,10 @@ Route::get('/old-url', function () {
 
 Route::get('/new-url', function () {
     return "This is the new URL";
+});
+
+// redirect to back
+
+Route::get('/redirect-back', function () {
+    return redirect()->back();
 });
