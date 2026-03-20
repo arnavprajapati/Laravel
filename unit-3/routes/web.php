@@ -9,6 +9,20 @@ Route::get('/', function () {
 });
 
 // controller and route creation 
+// step 1: create controller using command php artisan make:controller firstcontroller
+// step 2: open your created controller and create a function to return something
+// step 3: open web.php and import your controller and create a route to call the function of your controller
+// step 4: open your browser and type localhost:8000/first to see the result
+// step 5: you can also create a blade file and return it from your controller function instead of returning a string
 
 use App\Http\Controllers\firstcontroller;
+
 Route::get('/first', [firstcontroller::class, 'show']);
+// using blade file instead of string
+Route::get('/firstblade', [firstcontroller::class, 'showblade']);
+
+// calculator using controller
+Route::get('/calculator/{num1}/{comm}/{num2}', [firstcontroller::class, 'calculator']);
+
+// reverse string using controller 
+Route::get('/reversestring/{string}', [firstcontroller::class, 'reverseString']);
