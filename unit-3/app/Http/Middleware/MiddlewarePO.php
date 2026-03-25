@@ -14,7 +14,13 @@ class MiddlewarePO
      * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
-        return $next($request);
+{
+    $age = $request->query('age');
+
+    if (!$age || $age < 18) {
+        return response()->json(['error' => 'Access denied'], 403);
     }
+
+    return $next($request);
+}
 }

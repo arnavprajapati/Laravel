@@ -8,6 +8,6 @@ class MiddlewareController extends Controller
 {
     public function show()
     {
-        return "This is a middleware controller";
+        return "Successfully accessed the route with middleware!";
     }
 }

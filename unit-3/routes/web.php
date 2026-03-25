@@ -63,4 +63,12 @@ Route::get('/api', [APIController::class, 'index']);
 // Middleware Controller
 use App\Http\Controllers\MiddlewareController;
 
-Route::get('/middleware', [MiddlewareController::class, 'show']); 
+// step -> create controller using command php artisan make:controller MiddlewareController
+// step -> open your created controller and create a function to return something
+// step -> create middleware using command php artisan make:middleware MiddlewarePO
+// step -> open your created middleware and write your logic in handle function
+// step -> register your middleware in bootstrap/app.php file
+// step -> create a route and apply middleware to that route and call the controller function in that route
+
+Route::get('/middleware', [MiddlewareController::class, 'show'])
+    ->middleware('agecheck'); // agecheck is the alias of MiddlewarePO that we have created in bootstrap/app.php
