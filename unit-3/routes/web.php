@@ -40,4 +40,14 @@ use App\Http\Controllers\invokable123Controller;
 Route::get('/invokable', invokable123Controller::class); // since invokable controller has only one method __invoke, we can directly call the controller class without specifying the method
 
 
-Route::get('');
+Route::get('/languages', invokable123Controller::class); // since invokable controller has only one method __invoke, we can directly call the controller class without specifying the method
+
+// giving parameter to invokable controller
+Route::get('/languages/{id}', invokable123Controller::class); // since invokable
+
+
+// resource controller --> it is a controller that has all the methods for CRUD operations (create, read, update, delete)
+
+use App\Http\Controllers\ResourceController;
+
+Route::resource('resource', ResourceController::class); // this will create all the routes for CRUD operations for resource controller
