@@ -51,3 +51,16 @@ Route::get('/languages/{id}', invokable123Controller::class); // since invokable
 use App\Http\Controllers\ResourceController;
 
 Route::resource('resource', ResourceController::class); // this will create all the routes for CRUD operations for resource controller
+
+// API controller --> it is a controller that is used to create APIs
+
+use App\Http\Controllers\APIController;
+
+// user /api call to get the data in json format from APIController index method
+
+Route::get('/api', [APIController::class, 'index']); 
+
+// Middleware Controller
+use App\Http\Controllers\MiddlewareController;
+
+Route::get('/middleware', [MiddlewareController::class, 'show']); 
