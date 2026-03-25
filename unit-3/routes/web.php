@@ -70,5 +70,12 @@ use App\Http\Controllers\MiddlewareController;
 // step -> register your middleware in bootstrap/app.php file
 // step -> create a route and apply middleware to that route and call the controller function in that route
 
+//  http://127.0.0.1:8000/middleware?age=17 --> this will return access denied because age is less than 18
+
 Route::get('/middleware', [MiddlewareController::class, 'show'])
     ->middleware('agecheck'); // agecheck is the alias of MiddlewarePO that we have created in bootstrap/app.php
+
+
+// now we are going to do global middleware and route group middleware 
+
+Route::get('/globalmiddleware', [MiddlewareController::class, 'show']); // this route will be protected by global middleware that we have registered in bootstrap/app.php file
