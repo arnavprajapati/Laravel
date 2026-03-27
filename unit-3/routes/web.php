@@ -79,3 +79,12 @@ Route::get('/middleware', [MiddlewareController::class, 'show'])
 // now we are going to do global middleware and route group middleware 
 
 Route::get('/globalmiddleware', [MiddlewareController::class, 'show']); // this route will be protected by global middleware that we have registered in bootstrap/app.php file
+
+// previous two are custom middleware and global middleware but now we are going to do controller middleware which is applied to a specific controller or a group of controllers  // for global we use append method in bootstrap/app.php file and for controller middleware we use middleware method in the controller constructor
+
+// third is controller middleware --> we can apply middleware to a specific controller or a group of controllers
+
+use App\Http\Controllers\MyMidController;
+
+Route::get('/dashboard', [MyMidController::class, 'dashboard']); 
+Route::get('/admin', [MyMidController::class, 'admin']); 
