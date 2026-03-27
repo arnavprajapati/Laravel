@@ -20,12 +20,12 @@ return Application::configure(basePath: dirname(__DIR__))
         // ]);
 
         // register middleware globally 
-        $middleware->append(GlobalMiddleware::class);
+        // $middleware->append(GlobalMiddleware::class);
 
-        $middleware->alias([
-            'age' => CMMiddleware::class,
-            'country' => CountryMiddleware::class,
-        ]);
+        // $middleware->alias([
+        //     'age' => CMMiddleware::class,
+        //     'country' => CountryMiddleware::class,
+        // ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

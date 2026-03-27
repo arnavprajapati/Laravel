@@ -89,3 +89,8 @@ use App\Http\Controllers\MyMidController;
 Route::get('/dashboard', [MyMidController::class, 'dashboard']); 
 Route::get('/admin', [MyMidController::class, 'admin']); 
 Route::get('/country', [MyMidController::class, 'country']);
+
+// template inheriting and blade components
+
+Route::view('/myLogin', 'myLoginPage'); // this will return the view myLoginPage.blade.php when we hit the route /myLogin
+Route::view('/myLogout', 'myLogoutPage'); // this will return the view myLogoutPage.blade.php when we hit the route /myLogout
