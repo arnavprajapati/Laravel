@@ -88,3 +88,4 @@ use App\Http\Controllers\MyMidController;
 
 Route::get('/dashboard', [MyMidController::class, 'dashboard']); 
 Route::get('/admin', [MyMidController::class, 'admin']); 
+Route::get('/country', [MyMidController::class, 'country']);
