@@ -14,4 +14,8 @@ class MyDemoController extends Controller
     {
         return "you have signed in with id -> " . $id;
     }
+    public function info($id)
+    {
+        return "this is the info page and id -> " . $id;
+    }
 }

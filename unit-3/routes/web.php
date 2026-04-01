@@ -111,3 +111,18 @@ Route::prefix('mydemo')->controller(MyDemoController::class)->group(function () 
     Route::get('/display', 'display'); // this will call the display method of MyDemoController when we hit the route /mydemo/display
     Route::get('/details/{id}', 'details'); // this will call the details method of MyDemoController when we hit the route /mydemo/details/{id}
 });
+
+// group routing without prefix using controller
+
+Route::controller(MyDemoController::class)->group(function () {
+    Route::get('/display', 'display'); 
+    // Route::get('/details/{id}', 'details')->where('id', '[0-9]{1,3}');
+    // Route::get('/details/{id}', 'details')->whereNumber('id'); 
+    Route::get('/details/{id}', 'details')->whereAlpha('id');
+
+    // we going to use global constraint for this route so we don't need to specify the constraint for each route separately, we can specify the constraint globally for all routes that have {id} parameter
+    // in appserviceprovider.php file first import Route facade and then in boot method write Route::pattern('id', '[0-9]{1,3}'); this will apply the constraint to all routes that have {id} parameter
+
+    Route::get('/info/{id}', 'info');
+});
+
