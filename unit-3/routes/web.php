@@ -94,3 +94,20 @@ Route::get('/country', [MyMidController::class, 'country']);
 
 Route::view('/myLogin', 'myLoginPage'); // this will return the view myLoginPage.blade.php when we hit the route /myLogin
 Route::view('/myLogout', 'myLogoutPage'); // this will return the view myLogoutPage.blade.php when we hit the route /myLogout
+
+
+// important note: extends in testcase.php file is used to extend the base test case class provided by Laravel, which allows us to use all the testing functionalities provided by Laravel in our test cases. It is important to extend the base test case class in order to write effective test cases for our application.
+
+// task on whatsapp
+
+
+
+
+// grouping routing with prefix using controller
+
+use App\Http\Controllers\MyDemoController;
+
+Route::prefix('mydemo')->controller(MyDemoController::class)->group(function () {
+    Route::get('/display', 'display'); // this will call the display method of MyDemoController when we hit the route /mydemo/display
+    Route::get('/details/{id}', 'details'); // this will call the details method of MyDemoController when we hit the route /mydemo/details/{id}
+});
