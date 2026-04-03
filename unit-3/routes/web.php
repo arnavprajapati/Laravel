@@ -171,3 +171,8 @@ Route::view('/home', 'home');
 Route::view('/about', 'about');
 Route::view('/contact', 'contact');
 Route::view('/profile', 'profile');
+
+
+// task -> create a middleware globally there we need to authorize url with token 123a if u are authorized then a new view will be returned which will display a tour picutre other wise it will showcase custom error message you are outsider
+
+Route::view('/tour', 'tour');
