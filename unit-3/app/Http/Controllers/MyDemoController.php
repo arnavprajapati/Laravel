@@ -18,4 +18,8 @@ class MyDemoController extends Controller
     {
         return "this is the info page and id -> " . $id;
     }
+    public function displayy()
+    {
+        return view('coding');
+    }
 }

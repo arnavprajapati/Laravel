@@ -1,0 +1,1 @@
+<p>this view return by controller</p>

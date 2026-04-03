@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 // unit-3 controller, blades and advanced routing
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // controller and route creation 
 // step 1: create controller using command php artisan make:controller firstcontroller
@@ -156,3 +156,11 @@ Route::domain('admin.localhost')->group(function () {
         return 'Admin Found';
     });
 });
+
+// name routing using controller
+
+Route::get('/hello', function() {
+    return view('mypractice');
+});
+
+Route::get('/display/abc/cdr/ref', [MyDemoController::class, 'displayy'])->name('myinfo');
