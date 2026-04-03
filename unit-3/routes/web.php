@@ -58,7 +58,7 @@ use App\Http\Controllers\APIController;
 
 // user /api call to get the data in json format from APIController index method
 
-Route::get('/api', [APIController::class, 'index']); 
+Route::get('/api', [APIController::class, 'index']);
 
 // Middleware Controller
 use App\Http\Controllers\MiddlewareController;
@@ -86,7 +86,7 @@ Route::get('/globalmiddleware', [MiddlewareController::class, 'show']); // this 
 
 use App\Http\Controllers\MyMidController;
 
-Route::get('/dashboard', [MyMidController::class, 'dashboard']); 
+Route::get('/dashboard', [MyMidController::class, 'dashboard']);
 // Route::get('/admin', [MyMidController::class, 'admin']); 
 Route::get('/country', [MyMidController::class, 'country']);
 
@@ -115,7 +115,7 @@ Route::prefix('mydemo')->controller(MyDemoController::class)->group(function () 
 // group routing without prefix using controller
 
 Route::controller(MyDemoController::class)->group(function () {
-    Route::get('/display', 'display'); 
+    Route::get('/display', 'display');
     // Route::get('/details/{id}', 'details')->where('id', '[0-9]{1,3}');
     // Route::get('/details/{id}', 'details')->whereNumber('id'); 
     Route::get('/details/{id}', 'details')->whereAlpha('id');
@@ -159,8 +159,15 @@ Route::domain('admin.localhost')->group(function () {
 
 // name routing using controller
 
-Route::get('/hello', function() {
+Route::get('/hello', function () {
     return view('mypractice');
 });
 
 Route::get('/display/abc/cdr/ref', [MyDemoController::class, 'displayy'])->name('myinfo');
+
+// task -> create one parent layout called my parent inside that you have to create a blade template called home.blade.php inside that template there will be navigation like this home about contact profile there must be one image present over there in landscape mode footer section which contains copyright and year details now u have to create threee views in the views foolder about contact profile in that views u have to add the details in the corresponding colors in green red blue colors and include the parent content only two pages of your choice 
+
+Route::view('/home', 'home');
+Route::view('/about', 'about');
+Route::view('/contact', 'contact');
+Route::view('/profile', 'profile');
