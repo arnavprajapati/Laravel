@@ -87,7 +87,7 @@ Route::get('/globalmiddleware', [MiddlewareController::class, 'show']); // this 
 use App\Http\Controllers\MyMidController;
 
 Route::get('/dashboard', [MyMidController::class, 'dashboard']); 
-Route::get('/admin', [MyMidController::class, 'admin']); 
+// Route::get('/admin', [MyMidController::class, 'admin']); 
 Route::get('/country', [MyMidController::class, 'country']);
 
 // template inheriting and blade components
@@ -126,3 +126,33 @@ Route::controller(MyDemoController::class)->group(function () {
     Route::get('/info/{id}', 'info');
 });
 
+// php output 
+
+Route::get('/phpinfo', function () {
+    $name = 'Arnav';
+
+    // var_dump($name); // return in part of type and value of the variable
+    // echo "Hello, my name is $name"; 
+    $names = ['Arnav', 'Rahul'];
+    print_r($names); // return the array in a human readable format
+});
+
+// data passing in view 
+
+// Route::get('/practice', function () {
+//     $name = 'Arnav';
+//     $age = 99;
+//     // return view('practice', ['name' => $name, 'age' => $age]);
+//     return view('practice', compact('name', 'age')); 
+// });
+
+// domain routing in laravel
+// in url write admin.localhost:8000/user or admin.localhost:8000/admin to see the result
+Route::domain('admin.localhost')->group(function () {
+    Route::get('/user', function () {
+        return 'User Found';
+    });
+    Route::get('/admin', function () {
+        return 'Admin Found';
+    });
+});

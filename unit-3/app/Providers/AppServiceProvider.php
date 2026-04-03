@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Route::pattern('id', '[0-9]{1,3}'); // this will apply the constraint to all routes that have {id} parameter
+        // Route::pattern('id', '[0-9]{1,3}'); // this will apply the constraint to all routes that have {id} parameter
 
     }
 }
