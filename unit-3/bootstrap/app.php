@@ -28,7 +28,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // ]);
 
         // task -> create a middleware globally there we need to authorize url with token 123a if u are authorized then a new view will be returned which will display a tour picutre other wise it will showcase custom error message you are outsider
-        $middleware->append(App\Http\Middleware\TokenAuthMiddleware::class);
+        // $middleware->append(App\Http\Middleware\TokenAuthMiddleware::class);
 
     })
     ->withExceptions(function (Exceptions $exceptions): void {
