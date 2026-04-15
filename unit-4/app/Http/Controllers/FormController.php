@@ -19,11 +19,13 @@ class FormController extends Controller
         $validated = $request->validate([
             'name' => 'required|min:3',
             'email' => 'required|email',
+            'phone' => 'nullable|numeric|digits:10',
         ]);
 
         // Access validated data
         $name = $validated['name'];
         $email = $validated['email'];
+        $phone = $validated['phone'];
 
         // return back()->with('success', 'Form submitted successfully!');
         return response()->json([

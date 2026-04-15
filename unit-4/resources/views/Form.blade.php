@@ -41,6 +41,18 @@
 
         <br>
 
+        <div>
+            <label for="phone">Phone:</label>
+            <input type="text" name="phone" id="phone" value="{{ old('phone') }}">
+
+            {{-- Error --}}
+            @error('phone')
+            <p style="color:red;">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <br>
+
         <button type="submit">Submit</button>
     </form>
 
