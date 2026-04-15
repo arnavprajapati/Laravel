@@ -23,5 +23,8 @@ require __DIR__.'/auth.php';
 
 // we not added security token so 419 error will come when we submit the form, to fix this we need to add @csrf in our form blade file.
 
+// include security csrf token in form blade file to prevent 419 error
+// include inbuilt validation rules in controller to validate form data
+
 Route::get('/form', [FormController::class, 'index'])->name('form.index');
 Route::post('/form', [FormController::class, 'submit'])->name('form.submit');
