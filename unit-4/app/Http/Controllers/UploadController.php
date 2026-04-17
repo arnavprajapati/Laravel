@@ -13,25 +13,18 @@ class UploadController extends Controller
     public function submit(Request $request)
     {
         $request->validate([
-            'file' => 'required|file|mimes:jpg,png,pdf|max:2048',
+            'file' => 'required|file|mimes:jpg,png|max:2048',
         ]);
-
         $file = $request->file('file');
-
         $originalName = $file->getClientOriginalName();
         $filename = time() . '_' . $originalName;
-
         $file->move(public_path('uploads'), $filename);
-
         $path = 'uploads/' . $filename;
 
-        echo "File uploaded successfully! Filename: $originalName, Path: $path";
-
         return back()->with([
-            'success' => 'File uploaded successfully!',
+            'success'  => 'File uploaded successfully!',
             'filename' => $originalName,
-            'path' => $path
+            'path'     => $path,
         ]);
-
     }
 }
