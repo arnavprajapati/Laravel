@@ -28,3 +28,4 @@ require __DIR__.'/auth.php';
 
 Route::get('/form', [FormController::class, 'index'])->name('form.index');
 Route::post('/form', [FormController::class, 'submit'])->name('form.submit');
+
