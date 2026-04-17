@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UploadController;
+
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,3 +32,7 @@ require __DIR__.'/auth.php';
 Route::get('/form', [FormController::class, 'index'])->name('form.index');
 Route::post('/form', [FormController::class, 'submit'])->name('form.submit');
 
+// upload file
+
+Route::get('/upload', [UploadController::class, 'showview']);
+Route::post('/upload', [UploadController::class, 'submit'])->name('upload.submit');
