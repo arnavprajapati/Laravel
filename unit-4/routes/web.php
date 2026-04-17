@@ -36,3 +36,17 @@ Route::post('/form', [FormController::class, 'submit'])->name('form.submit');
 
 Route::get('/upload', [UploadController::class, 'showview']);
 Route::post('/upload', [UploadController::class, 'submit'])->name('upload.submit');
+
+// laravel localization -> two methods simple way and second using middleware + session to store selected language and apply it across the application.
+
+// method 1 simple way 
+// step1 -> in resource/lang create folder for each language eg: pa for punjabi and en for english
+// step2 -> create messages.php file in each language folder and add key value pairs for translations
+// step3 -> create blade ex home.blade.php and use __('messages.welcome') to display welcome message in selected language
+// step4 -> in env file set default locale eg: APP_LOCALE=pa for punjabi and APP_LOCALE=en for english
+
+// write in browser http://localhost:8000/lang to switch to punjabi language and http://localhost:8000/lang to switch to english language.
+
+Route::get('/lang', function () {
+    return view('Home');
+});
