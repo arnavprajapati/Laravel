@@ -47,6 +47,11 @@ Route::post('/upload', [UploadController::class, 'submit'])->name('upload.submit
 
 // write in browser http://localhost:8000/lang to switch to punjabi language and http://localhost:8000/lang to switch to english language.
 
+// drawback of this method is we need to change env file to switch language and it will apply globally across the application, we cannot switch language for specific user or session.
+
+// ques -> display 6 lang marathi gujrati telugu bhojpuri urdu and hindi my name class bio and skill in each language using method 1 simple way of laravel localization.
+
 Route::get('/lang', function () {
     return view('Home');
 });
+

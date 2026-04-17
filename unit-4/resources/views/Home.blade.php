@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>{{ __('messages.welcome') }}</h1>
-    <p>{{ __('messages.about') }}</p>
+    <p>{{ __('messages.name') }}</p>
+    <p>{{ __('messages.class') }}</p>
+    <p>{{ __('messages.bio') }}</p>
+    <p>{{ __('messages.skill') }}</p>
 </body>
 </html>
