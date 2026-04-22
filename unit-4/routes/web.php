@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // we not added security token so 419 error will come when we submit the form, to fix this we need to add @csrf in our form blade file.
 
@@ -55,3 +55,7 @@ Route::get('/lang', function () {
     return view('Home');
 });
 
+Route::get('/lang/locale/{locale}', function ($locale) {
+    session(['locale' => $locale]);
+    return redirect()->back();
+});
