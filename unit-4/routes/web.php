@@ -59,3 +59,33 @@ Route::get('/lang/locale/{locale}', function ($locale) {
     session(['locale' => $locale]);
     return redirect()->back();
 });
+
+// ============================================================
+// TASK: Cookie-based functionalities
+// a) Set cookie city=Mumbai and retrieve it
+// b) Check if cookie exists before displaying
+// c) Cookie::queue() to set multiple cookies (name, email)
+// d) Form: enter name -> store in cookie -> display "Welcome, <name>"
+// e) Basic login/logout using cookies (user_id)
+// ============================================================
+
+use App\Http\Controllers\CookieController;
+
+// a) Set cookie city=Mumbai
+Route::get('/cookie/set', [CookieController::class, 'setCity'])->name('cookie.set');
+
+// a+b) Retrieve city cookie (with existence check)
+Route::get('/cookie/get', [CookieController::class, 'getCity'])->name('cookie.get');
+
+// c) Set multiple cookies using Cookie::queue()
+Route::get('/cookie/queue', [CookieController::class, 'queueMultiple'])->name('cookie.queue');
+
+// d) Form: enter name -> store in cookie
+Route::get('/cookie/welcome', [CookieController::class, 'showWelcomeForm'])->name('cookie.welcome');
+Route::post('/cookie/welcome', [CookieController::class, 'storeWelcomeName'])->name('cookie.welcome.store');
+
+// e) Login / Logout using cookies
+Route::get('/cookie/login', [CookieController::class, 'showLoginForm'])->name('cookie.login');
+Route::post('/cookie/login', [CookieController::class, 'login'])->name('cookie.login.post');
+Route::get('/cookie/logout', [CookieController::class, 'logout'])->name('cookie.logout');
+Route::get('/cookie/profile', [CookieController::class, 'profile'])->name('cookie.profile');
