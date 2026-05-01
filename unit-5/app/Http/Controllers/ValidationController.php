@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\EmailRule;
 use Illuminate\Http\Request;
-use App\Rules\NameRule; //mandatory to import the rule
+use App\Rules\NameRule;
 
 class ValidationController extends Controller
 {
     public function validate(Request $request)
     {
         $request->validate([
-            'name' => ['required', new NameRule], //using the rule in validation
+            'name' => ['required', new NameRule],
+            'email' => ['required', new EmailRule],
         ]);
 
-        return "Name is valid";
+        return "Name and email are valid";
     }
 }

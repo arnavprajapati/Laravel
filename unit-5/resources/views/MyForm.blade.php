@@ -16,6 +16,12 @@
             {{ $errors->first('name') }}
         </div>
         @endif
+        <input type="text" name="email" placeholder="Enter your email">
+        @if ($errors->has('email'))
+        <div style="color: red;">
+            {{ $errors->first('email') }}
+        </div>
+        @endif
         <button type="submit">Submit</button>
     </form>
 </body>
