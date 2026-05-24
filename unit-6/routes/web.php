@@ -25,3 +25,9 @@ Route::get('/mongo-read', [MongoDBController::class, 'read']);
 Route::get('/mongo-update', [MongoDBController::class, 'updateData']);
 Route::get('/mongo-delete', [MongoDBController::class, 'deleteData']);
 
+
+Route::get('/', [MongoDBController::class, 'index']);
+Route::post('/insert-data', [MongoDBController::class, 'store']);
+Route::get('/edit/{id}', [MongoDBController::class, 'edit']);
+Route::post('/update/{id}', [MongoDBController::class, 'update']);
+Route::get('/delete/{id}', [MongoDBController::class, 'destroy']);
