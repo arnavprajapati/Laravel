@@ -16,3 +16,7 @@ Route::get('/insert-eloquent', [StudentController::class, 'insert']);
 Route::get('/read-eloquent', [StudentController::class, 'read']);
 Route::get('/update-eloquent', [StudentController::class, 'updateData']);
 Route::get('/delete-eloquent', [StudentController::class, 'deleteData']);
+
+use App\Http\Controllers\MongoDBController;
+
+Route::get('/mongo-test', [MongoDBController::class, 'insert']);
