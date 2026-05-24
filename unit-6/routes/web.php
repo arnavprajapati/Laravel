@@ -8,3 +8,6 @@ Route::get('/', function () {
 });
 
 Route::get('/insert', [StudentController::class, 'insert']);
+Route::get('/read', [StudentController::class, 'read']);
+Route::get('/update', [StudentController::class, 'updateData']);
+Route::get('/delete', [StudentController::class, 'deleteData']);
