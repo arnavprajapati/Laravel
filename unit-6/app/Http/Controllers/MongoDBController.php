@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\mongoDbConfig;
 use Illuminate\Http\Request;
 
@@ -15,5 +16,29 @@ class MongoDBController extends Controller
         ]);
 
         return "MongoDB Connected Successfully";
+    }
+
+    public function read()
+    {
+        $data = mongoDbConfig::all();
+        return $data;
+    }
+
+    public function updateData()
+    {
+        mongoDbConfig::where('name', 'Arnav')
+            ->update([
+                'name' => 'Updated Arnav'
+            ]);
+
+        return "Data Updated";
+    }
+
+    public function deleteData()
+    {
+        mongoDbConfig::where('name', 'Updated Arnav')
+            ->delete();
+
+        return "Data Deleted";
     }
 }
