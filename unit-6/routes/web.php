@@ -11,3 +11,8 @@ Route::get('/insert', [StudentController::class, 'insert']);
 Route::get('/read', [StudentController::class, 'read']);
 Route::get('/update', [StudentController::class, 'updateData']);
 Route::get('/delete', [StudentController::class, 'deleteData']);
+
+Route::get('/insert-eloquent', [StudentController::class, 'insert']);
+Route::get('/read-eloquent', [StudentController::class, 'read']);
+Route::get('/update-eloquent', [StudentController::class, 'updateData']);
+Route::get('/delete-eloquent', [StudentController::class, 'deleteData']);

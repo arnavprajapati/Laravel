@@ -3,44 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     public function insert()
     {
-        DB::table('students')->insert([
+        Student::create([
             'name' => 'Arnav',
             'email' => 'arnav@gmail.com',
             'phone' => '9999999999'
         ]);
 
-        return "Data Inserted Successfully";
+        return "Eloquent Inserted";
     }
 
     public function read()
     {
-        $students = DB::table('students')->get();
+        $students = Student::all();
         return $students;
     }
 
     public function updateData()
     {
-        DB::table('students')
-            ->where('id', 1)
-            ->update([
-                'name' => 'Updated Arnav'
-            ]);
+        $student = Student::find(1);
+        $student->update([
+            'name' => 'Updated Arnav'
+        ]);
 
         return "Data Updated";
     }
 
     public function deleteData()
     {
-        DB::table('students')
-            ->where('id', 1)
-            ->delete();
+        $student = Student::find(1);
+        $student->delete();
 
         return "Data Deleted";
     }
