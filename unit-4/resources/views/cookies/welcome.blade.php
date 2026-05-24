@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <h2>Welcome Cookie Demo</h2>
+    <h2>Welcome Cookie</h2>
 
     {{-- d) Display welcome message if cookie exists --}}
     @if ($name)
