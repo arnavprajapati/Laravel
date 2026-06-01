@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\OldInputController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,3 +11,7 @@ Route::get('/', function () {
 // 1.Request Data Retrieval 
 Route::get('/form', [FormController::class, 'displayForm']);
 Route::post('/submit', [FormController::class, 'submitForm']);
+
+// 3.Old Input
+Route::get('/old-input/form', [OldInputController::class, 'showForm']);
+Route::post('/old-input/submit', [OldInputController::class, 'processForm']);
