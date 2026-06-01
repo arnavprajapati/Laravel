@@ -4,6 +4,7 @@ use App\Http\Controllers\customValidationController;
 use App\Http\Controllers\ErrorMessageController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\OldInputController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,3 +30,8 @@ Route::post('/validate/submit', [customValidationController::class, 'validateFor
 
 Route::get('/error-messages', [ErrorMessageController::class, 'showForm']);
 Route::post('/error-messages/submit', [ErrorMessageController::class, 'processForm']);
+
+//6.uplaod files
+
+Route::get('/upload', [UploadController::class, 'showview']);
+Route::post('/upload', [UploadController::class, 'submit'])->name('upload.submit');
