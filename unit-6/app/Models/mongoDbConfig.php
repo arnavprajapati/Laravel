@@ -8,7 +8,7 @@ class mongoDbConfig extends Model
 {
     protected $connection = 'mongodb';
 
-    protected $collection = 'students';
+    protected $collection = 'student';
 
     protected $fillable = [
         'name',
