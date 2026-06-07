@@ -1,8 +1,14 @@
 <?php
 
+use App\Http\Controllers\AgeCheckController;
+use App\Http\Controllers\AgeController;
+use App\Http\Controllers\APIController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FirstController;
 use App\Http\Controllers\Invokable123Controller;
+use App\Http\Controllers\MiddlewareController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Middleware\FirstMiddleware;
 use Illuminate\Support\Facades\Route;
 use MongoDB\Builder\Expression\ReduceOperator;
 
@@ -166,3 +172,63 @@ Route::resource(
     'resource',
     ResourceController::class
 );
+
+Route::get('/api', [APIController::class, 'index']);
+
+
+// middleware route -> agecheck middleware -> checks if age is above 18 or not, if not then return access denied else return access granted
+
+// Browser
+//    │
+//    │  GET /middleware?age=19
+//    ▼
+// routes/web.php
+//    │
+//    │ Route::get('/middleware')
+//    │ ->middleware('agecheck')
+//    ▼
+// bootstrap/app.php
+//    │
+//    │ 'agecheck' =>
+//    │ FirstMiddleware::class
+//    ▼
+// app/Http/Middleware/FirstMiddleware.php
+//    │
+//    │ $age = $request->query('age');
+//    │
+//    ├── Age < 18 OR Age Missing
+//    │         │
+//    │         ▼
+//    │   Return 403
+//    │   Access Denied
+//    │
+//    └── Age >= 18
+//              │
+//              ▼
+//       return $next($request);
+//              │
+//              ▼
+// app/Http/Controllers/AgeController.php
+//              │
+//              ▼
+//       public function show()
+//       {
+//           return "Access Granted";
+//       }
+//              │
+//              ▼
+//          Browser
+
+Route::get(
+    '/middleware',
+    [AgeController::class, 'show']
+)->middleware('agecheck');
+
+
+// global middleware -> apply to all routes --> append in bootstrap/app.php -> use for example if you want to check age for all routes then you can use global middleware
+
+Route::get('/global-middleware', [AgeController::class, 'show']);
+
+// in thiss route we are checking for both age and country, if age is above 18 and country is india then only access granted else access denied
+
+Route::get('/country', [CountryController::class, 'index']);
