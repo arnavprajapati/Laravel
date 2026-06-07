@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\FirstController;
+use App\Http\Controllers\Invokable123Controller;
+use App\Http\Controllers\ResourceController;
 use Illuminate\Support\Facades\Route;
 use MongoDB\Builder\Expression\ReduceOperator;
 
@@ -147,3 +150,19 @@ Route::get('/old-url', function () {
 Route::get('/new-url', function () {
     return "This is the new URL";
 });
+
+// unit -> 3
+
+// basic controller route and passing data to view
+
+Route::get('/first-blade', [FirstController::class, 'showblade']);
+
+// invokable controller route
+Route::get('/invokable/{id}', Invokable123Controller::class);
+
+// Resource controller route command -> php artisan make:controller ResourceController --resource
+
+Route::resource(
+    'resource',
+    ResourceController::class
+);
