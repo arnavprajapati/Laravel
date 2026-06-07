@@ -90,3 +90,60 @@ Route::get('/with-example', function () {
 Route::get('/global-view', function () {
     return view('globalviews');
 });
+
+// Attaching Headers to Responses -> reason for this is to provide additional information about the response or to control how the client should handle the response.
+
+Route::get('/adding-header', function () {
+    return response("Headers are attached")
+        ->header('app-name', 'basic/info')
+        ->header('Content-Type', 'text/plain')
+        ->header('File disposition', 'downloadable');
+});
+
+Route::get('/json-response', function () {
+    $data = [
+        'name' => 'Arnav',
+        'age' => 20,
+        'role' => 'developer'
+    ];
+    return response()->json($data);
+});
+
+Route::get('/json-responses', function () {
+    return response()->json(
+        [
+            'name' => 'Arnav',
+            'age' => 20,
+            'role' => 'developer'
+        ],
+    );
+});
+
+// Attaching Cookies to Responses -> reason for this is to store small pieces of data on the client's browser, which can be used for various purposes such as session management, personalization, and tracking user preferences.
+
+Route::get('/set-cookie', function () {
+    return response("Cookie is set")
+        ->cookie('user', 'Arnav', 60);
+});
+
+Route::get('/get-cookie', function () {
+    $value = request()->cookie('user');
+    return view('cookie', [
+        'user' => $value
+    ]);
+    // compact -> compact('user') is a shorthand way to create an array with the variable name as the key and the variable value as the value. It is often used when passing data to views in Laravel. In this case, it would create an array like ['user' => $user] and pass it to the view.
+    // return view('cookie', compact('user'));
+});
+
+Route::get('/delete-cookie', function () {
+    return response("Cookie is deleted")
+        ->cookie('user', '', -1);
+});
+
+Route::get('/old-url', function () {
+    return redirect('/new-url');
+});
+
+Route::get('/new-url', function () {
+    return "This is the new URL";
+});
