@@ -42,6 +42,7 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+
 //redirect route
 Route::get('/login', function () {
     return redirect()->route('profile');
@@ -50,4 +51,42 @@ Route::get('/login', function () {
 //fallback
 Route::fallback(function () {
     return view('error');
+});
+
+
+// unit -> 2
+
+Route::prefix('lang')->group(function () {
+    Route::get('/', function () {
+        return view('lang');
+    });
+    Route::get('/associative', function () {
+        $courses = ['js', 'php', 'c++'];
+        return view('student', [
+            'courses' => $courses
+        ]);
+    });
+    Route::get('/compact', function () {
+        $courses = ['js', 'php', 'c++'];
+        return view('student', compact('courses'));
+    });
+    Route::get('/with', function () {
+        $courses = ['js', 'php', 'c++'];
+        return view('student')
+            ->with('courses', $courses);
+    });
+});
+
+Route::get('/with-example', function () {
+    $name = 'arnav';
+    $age = 22;
+    return view('data')
+        ->with('name', $name)
+        ->with('age', $age);
+});
+
+// Globally Sharing Data with Views
+
+Route::get('/global-view', function () {
+    return view('globalviews');
 });
