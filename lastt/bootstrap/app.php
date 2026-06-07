@@ -21,9 +21,9 @@ return Application::configure(basePath: dirname(__DIR__))
             CountryMiddleware::class,
 
         ]);
-        $middleware->append(
-            GlobalMiddleware::class
-        );
+        // $middleware->append(
+        //     GlobalMiddleware::class
+        // );
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

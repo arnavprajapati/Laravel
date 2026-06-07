@@ -7,6 +7,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FirstController;
 use App\Http\Controllers\Invokable123Controller;
 use App\Http\Controllers\MiddlewareController;
+use App\Http\Controllers\MyDemoController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Middleware\FirstMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -232,3 +233,16 @@ Route::get('/global-middleware', [AgeController::class, 'show']);
 // in thiss route we are checking for both age and country, if age is above 18 and country is india then only access granted else access denied
 
 Route::get('/country', [CountryController::class, 'index']);
+
+// here mylogin and mylogout are blade files which are created in resources/views folder, these routes are used to show the login and logout pages -> inheriting the layout from layout.blade.php file which is also created in resources/views folder
+
+
+Route::view('/myLogin', 'myLoginPage');
+Route::view('/myLogout', 'myLogoutPage');
+
+// here we -> group the routes with prefix mydemo and controller MyDemoController, so that we don't have to write the controller name for each route, we can just write the method name and it will automatically call the method from the MyDemoController 
+
+Route::prefix('mydemo')->controller(MyDemoController::class)->group(function () {
+    Route::get('/display', 'display'); // this will call the display method of MyDemoController when we hit the route /mydemo/display
+    Route::get('/details/{id}', 'details'); // this will call the details method of MyDemoController when we hit the route /mydemo/details/{id}
+});
