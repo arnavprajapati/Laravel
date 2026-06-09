@@ -4,66 +4,121 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Student;
 
 class StudentController extends Controller
 {
-    // Show Data
+    // // Show Data
+    // public function index()
+    // {
+    //     $students = DB::table('students')->get();
+
+    //     return view('students.index', compact('students'));
+    // }
+
+    // // Add Form
+    // public function create()
+    // {
+    //     return view('students.create');
+    // }
+
+    // // Insert
+    // public function store(Request $request)
+    // {
+    //     DB::table('students')->insert([
+    //         'name' => $request->name,
+    //         'age' => $request->age,
+    //         'created_at' => now(),
+    //         'updated_at' => now()
+    //     ]);
+
+    //     return redirect('/students');
+    // }
+
+    // // Edit Form
+    // public function edit($id)
+    // {
+    //     $student = DB::table('students')
+    //                 ->where('id',$id)
+    //                 ->first();
+
+    //     return view('students.edit', compact('student'));
+    // }
+
+    // // Update
+    // public function update(Request $request,$id)
+    // {
+    //     DB::table('students')
+    //         ->where('id',$id)
+    //         ->update([
+    //             'name' => $request->name,
+    //             'age' => $request->age,
+    //             'updated_at' => now()
+    //         ]);
+
+    //     return redirect('/students');
+    // }
+
+    // // Delete
+    // public function destroy($id)
+    // {
+    //     DB::table('students')
+    //         ->where('id',$id)
+    //         ->delete();
+
+    //     return redirect('/students');
+    // }
+
+    // READ
     public function index()
     {
-        $students = DB::table('students')->get();
+        $students = Student::all();
 
         return view('students.index', compact('students'));
     }
 
-    // Add Form
+    // CREATE FORM
     public function create()
     {
         return view('students.create');
     }
 
-    // Insert
+    // INSERT
     public function store(Request $request)
     {
-        DB::table('students')->insert([
+        Student::create([
             'name' => $request->name,
-            'age' => $request->age,
-            'created_at' => now(),
-            'updated_at' => now()
+            'age' => $request->age
         ]);
 
         return redirect('/students');
     }
 
-    // Edit Form
+    // EDIT FORM
     public function edit($id)
     {
-        $student = DB::table('students')
-                    ->where('id',$id)
-                    ->first();
+        $student = Student::find($id);
 
         return view('students.edit', compact('student'));
     }
 
-    // Update
-    public function update(Request $request,$id)
+    // UPDATE
+    public function update(Request $request, $id)
     {
-        DB::table('students')
-            ->where('id',$id)
-            ->update([
-                'name' => $request->name,
-                'age' => $request->age,
-                'updated_at' => now()
-            ]);
+        $student = Student::find($id);
+
+        $student->update([
+            'name' => $request->name,
+            'age' => $request->age
+        ]);
 
         return redirect('/students');
     }
 
-    // Delete
+    // DELETE
     public function destroy($id)
     {
-        DB::table('students')
-            ->where('id',$id)
-            ->delete();
+        Student::destroy($id);
 
         return redirect('/students');
     }
