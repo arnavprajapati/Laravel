@@ -9,11 +9,16 @@ use App\Http\Controllers\Invokable123Controller;
 use App\Http\Controllers\MiddlewareController;
 use App\Http\Controllers\MyDemoController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\StudentController;
 use App\Http\Middleware\FirstMiddleware;
 use Illuminate\Support\Facades\Route;
 use MongoDB\Builder\Expression\ReduceOperator;
 
 use function Pest\Laravel\json;
+
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/user', function () {
     return response()->json([
@@ -246,3 +251,18 @@ Route::prefix('mydemo')->controller(MyDemoController::class)->group(function () 
     Route::get('/display', 'display'); // this will call the display method of MyDemoController when we hit the route /mydemo/display
     Route::get('/details/{id}', 'details'); // this will call the details method of MyDemoController when we hit the route /mydemo/details/{id}
 });
+
+
+// 1-> query builder -> in this we are using DB facade to perform CRUD operations on the students table, we are inserting a student, getting all students, updating a student and deleting a student
+
+Route::get('/students',[StudentController::class,'index']);
+
+Route::get('/students/create',[StudentController::class,'create']);
+
+Route::post('/students/store',[StudentController::class,'store']);
+
+Route::get('/students/edit/{id}',[StudentController::class,'edit']);
+
+Route::post('/students/update/{id}',[StudentController::class,'update']);
+
+Route::get('/students/delete/{id}',[StudentController::class,'destroy']);
