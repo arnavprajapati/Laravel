@@ -12,6 +12,7 @@ use App\Http\Controllers\MyDemoController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\StudentController;
 use App\Http\Middleware\FirstMiddleware;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use MongoDB\Builder\Expression\ReduceOperator;
 
@@ -256,20 +257,54 @@ Route::prefix('mydemo')->controller(MyDemoController::class)->group(function () 
 
 // 1-> query builder -> in this we are using DB facade to perform CRUD operations on the students table, we are inserting a student, getting all students, updating a student and deleting a student
 
-Route::get('/students',[StudentController::class,'index']);
+Route::get('/students', [StudentController::class, 'index']);
 
-Route::get('/students/create',[StudentController::class,'create']);
+Route::get('/students/create', [StudentController::class, 'create']);
 
-Route::post('/students/store',[StudentController::class,'store']);
+Route::post('/students/store', [StudentController::class, 'store']);
 
-Route::get('/students/edit/{id}',[StudentController::class,'edit']);
+Route::get('/students/edit/{id}', [StudentController::class, 'edit']);
 
-Route::post('/students/update/{id}',[StudentController::class,'update']);
+Route::post('/students/update/{id}', [StudentController::class, 'update']);
 
-Route::get('/students/delete/{id}',[StudentController::class,'destroy']);
+Route::get('/students/delete/{id}', [StudentController::class, 'destroy']);
 
 
 // form 
 
 Route::get('/form', [FormController::class, 'showform']);
 Route::post('/submit', [FormController::class, 'submitform']);
+
+// session
+
+Route::get('/set-session', function (Request $request) {
+
+    $request->session()->put('name', 'Arnav');
+    $request->session()->put('course', 'Laravel');
+
+    return "Session Stored";
+});
+
+Route::get('/get-session', function (Request $request) {
+
+    $name = $request->session()->get('name');
+    $course = $request->session()->get('course');
+
+    return $name . " " . $course;
+});
+
+Route::get('/check-session', function (Request $request) {
+
+    if ($request->session()->has('name')) {
+        return "Session Exists";
+    }
+
+    return "Session Not Found";
+});
+
+Route::get('/flush-session', function (Request $request) {
+
+    $request->session()->flush();
+
+    return "All Sessions Deleted";
+});
