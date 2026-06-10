@@ -5,6 +5,7 @@ use App\Http\Controllers\AgeController;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FirstController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\Invokable123Controller;
 use App\Http\Controllers\MiddlewareController;
 use App\Http\Controllers\MyDemoController;
@@ -266,3 +267,9 @@ Route::get('/students/edit/{id}',[StudentController::class,'edit']);
 Route::post('/students/update/{id}',[StudentController::class,'update']);
 
 Route::get('/students/delete/{id}',[StudentController::class,'destroy']);
+
+
+// form 
+
+Route::get('/form', [FormController::class, 'showform']);
+Route::post('/submit', [FormController::class, 'submitform']);
